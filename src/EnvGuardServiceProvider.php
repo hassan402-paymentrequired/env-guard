@@ -21,9 +21,9 @@ class EnvGuardServiceProvider extends PackageServiceProvider
     public function boot()
     {
 
-            $this->app->afterLoadingEnvironment( function () {
-                EnvGuard::validate();
-            });
+        $this->app->afterLoadingEnvironment(function () {
+            EnvGuard::validate();
+        });
 
     }
 }
