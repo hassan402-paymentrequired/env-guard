@@ -1,33 +1,12 @@
-# lets you define a schema for your .env file — think of it like a contract. When your app boots, it checks your actual .env against that contract and fails loudly and early if something is wrong.
+# ENV-GUARD 
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/laramicstudio/env-guard.svg?style=flat-square)](https://packagist.org/packages/laramicstudio/env-guard)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/laramicstudio/env-guard/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/laramicstudio/env-guard/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/laramicstudio/env-guard/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/laramicstudio/env-guard/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/laramicstudio/env-guard.svg?style=flat-square)](https://packagist.org/packages/laramicstudio/env-guard)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
-## Support us
+lets you define a schema for your .env file — think of it like a contract. When your app boots, it checks your actual .env against that contract and fails loudly and early if something is wrong.
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/env-guard.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/env-guard)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
-
-## Installation
-
-You can install the package via composer:
 
 ```bash
 composer require laramicstudio/env-guard
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="env-guard-migrations"
-php artisan migrate
 ```
 
 You can publish the config file with:
@@ -36,24 +15,38 @@ You can publish the config file with:
 php artisan vendor:publish --tag="env-guard-config"
 ```
 
+If you are installing on a already existing project you can run the command
+
+```bash
+php artisan env:check
+```
+
 This is the contents of the published config file:
 
 ```php
 return [
+
+    'log_rejections' => false,
+
+    'log_channel' => 'stack',
+
+    'rules' => [
+        'APP_KEY' => 'required|string',
+        'APP_ENV' => 'required|in:local,staging,production',
+        'DB_PASSWORD' => 'required|string|min:8',
+        'STRIPE_SECRET' => 'required|starts_with:sk_',
+        'CACHE_TTL' => 'required|integer|min:1',
+        'MAIL_PORT' => 'nullable|integer',
+    ],
 ];
 ```
 
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="env-guard-views"
-```
 
 ## Usage
 
 ```php
-$envGuard = new Laramic Studio\EnvGuard();
-echo $envGuard->echoPhrase('Hello, Laramic Studio!');
+$envGuard = new LaramicStudio\EnvGuard();
+$envGuard->validate();
 ```
 
 ## Testing
@@ -70,13 +63,9 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
-
 ## Credits
 
-- [hassan lateed](https://github.com/codewithhassan)
+- [hassan lateef](https://github.com/codewithhassan)
 - [All Contributors](../../contributors)
 
 ## License
