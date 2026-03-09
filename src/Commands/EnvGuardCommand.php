@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace LaramicStudio\EnvGuard\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class EnvGuardCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'env-guard';
 
     public $description = 'My command';
 
