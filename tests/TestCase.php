@@ -1,10 +1,10 @@
 <?php
 
-namespace Laramic Studio\EnvGuard\Tests;
+namespace LaramicStudio\EnvGuard\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Laramic Studio\EnvGuard\EnvGuardServiceProvider;
+use LaramicStudio\EnvGuard\EnvGuardServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -13,7 +13,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Laramic Studio\\EnvGuard\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'LaramicStudio\\EnvGuard\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 
