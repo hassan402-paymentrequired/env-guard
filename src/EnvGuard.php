@@ -28,7 +28,9 @@ class EnvGuard
             }
 
             foreach ($ruleList as $rawRule) {
-                if ($rawRule === 'nullable') continue;
+                if ($rawRule === 'nullable') {
+                    continue;
+                }
 
                 ['rule' => $ruleName, 'param' => $param] = $this->parseRule($rawRule);
                 $error = $this->checkRule($ruleName, $param, $value);
@@ -48,6 +50,7 @@ class EnvGuard
     {
         if (str_contains($rule, ':')) {
             [$name, $param] = explode(':', $rule, 2);
+
             return ['rule' => $name, 'param' => $param];
         }
 
@@ -60,6 +63,7 @@ class EnvGuard
 
         if (! in_array($rule, $acceptedAttributes)) {
             $this->logRejection("invalid rule: {$rule}", $rule);
+
             return "invalid rule: {$rule}";
         }
 
@@ -94,7 +98,7 @@ class EnvGuard
             case 'in':
                 $allowed = explode(',', $param);
                 if ($value !== null && ! in_array($value, $allowed, true)) {
-                    return 'must be one of: ' . $param;
+                    return 'must be one of: '.$param;
                 }
                 break;
 
@@ -110,7 +114,6 @@ class EnvGuard
 
         return null;
     }
-
 
     private function logRejection(string $message, string $key): void
     {

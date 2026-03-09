@@ -15,6 +15,7 @@ class EnvGuardCommand extends Command
     {
         EnvGuard::validate();
         $this->comment('All done');
+
         return self::SUCCESS;
     }
 }
