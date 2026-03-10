@@ -14,7 +14,7 @@ return [
         'in:',
         'starts_with:',
         'nullable',
-        'boolean'
+        'boolean',
     ],
 
     'rules' => [

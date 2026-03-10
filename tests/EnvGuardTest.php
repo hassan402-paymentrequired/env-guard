@@ -1,6 +1,5 @@
 <?php
 
-
 it('passes when boolean  is provided', function () {
     config(['env-guard.rules' => ['APP_DEBUG' => 'boolean']]);
     putenv('APP_DEBUG=');
