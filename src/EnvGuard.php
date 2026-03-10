@@ -42,7 +42,7 @@ class EnvGuard
         }
 
         if (! empty($errors)) {
-            throw new \RuntimeException(implode(PHP_EOL, $errors));
+            throw new \RuntimeException(implode(PHP_EOL, $errors) . ' 🤢🤮');
         }
     }
 

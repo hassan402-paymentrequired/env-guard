@@ -13,9 +13,8 @@ class EnvGuardCommand extends Command
 
     public function handle(): int
     {
-        EnvGuard::validate();
-        $this->comment('All done');
-
+        app(EnvGuard::class)->validate();
+        $this->comment('✅ All done. you env spells good 😋');
         return self::SUCCESS;
     }
 }
