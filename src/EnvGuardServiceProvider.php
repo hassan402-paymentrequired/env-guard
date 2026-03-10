@@ -18,7 +18,7 @@ class EnvGuardServiceProvider extends PackageServiceProvider
 
     public function register()
     {
-        parent::register(); 
+        parent::register();
 
         $this->app->singleton(EnvGuard::class, fn () => new EnvGuard);
     }
