@@ -36,7 +36,7 @@ class EnvGuard
                 $error = $this->checkRule($ruleName, $param, $value);
 
                 if ($error !== null) {
-                    $errors[] = "[EnvGuard] validation failed {$key}: {$error}";
+                    $errors[] = "[EnvGuard] validation failed [$key]: {$error}";
                 }
             }
         }
@@ -59,7 +59,7 @@ class EnvGuard
 
     private function checkRule(string $rule, ?string $param, mixed $value): ?string
     {
-        $acceptedAttributes = ['required', 'string', 'integer', 'min', 'in', 'starts_with', 'nullable'];
+        $acceptedAttributes = ['required', 'string', 'integer', 'min', 'in', 'starts_with', 'nullable', 'boolean'];
 
         if (! in_array($rule, $acceptedAttributes)) {
             $this->logRejection("invalid rule: {$rule}", $rule);
@@ -108,6 +108,11 @@ class EnvGuard
                 }
                 break;
 
+            case 'boolean':
+                if ($value !== null && ! is_bool($value)) {
+                    return 'must be a boolean ' . $param;
+                }
+                break;
             case 'nullable':
                 break;
         }

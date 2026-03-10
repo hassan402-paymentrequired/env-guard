@@ -1,5 +1,12 @@
 <?php
 
+
+it('passes when boolean  is provided', function () {
+    config(['env-guard.rules' => ['APP_DEBUG' => 'boolean']]);
+    putenv('APP_DEBUG=');
+    (new \LaramicStudio\EnvGuard\EnvGuard)->validate();
+})->throwsNoExceptions();
+
 it('fails when required key is missing', function () {
     config(['env-guard.rules' => ['APP_KEY' => 'required']]);
     putenv('APP_KEY=');
