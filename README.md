@@ -1,6 +1,7 @@
+
+![App Screenshot](logo.png)
+
 # ENV-GUARD 
-
-
 
 lets you define a schema for your .env file — think of it like a contract. When your app boots, it checks your actual .env against that contract and fails loudly and early if something is wrong.
 
@@ -54,10 +55,6 @@ $envGuard->validate();
 ```bash
 composer test
 ```
-
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
 ## Contributing
 
