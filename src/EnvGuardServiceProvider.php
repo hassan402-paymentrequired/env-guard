@@ -13,17 +13,20 @@ class EnvGuardServiceProvider extends PackageServiceProvider
         $package
             ->name('env-guard')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_env_guard_table')
             ->hasCommand(EnvGuardCommand::class);
+    }
+
+    public function register()
+    {
+        $this->app->singleton(EnvGuard::class, fn () => new EnvGuard);
     }
 
     public function boot()
     {
+        parent::boot();
 
-        $this->app->afterLoadingEnvironment(function () {
-            EnvGuard::validate();
+        $this->app->booted(function () {
+            app(EnvGuard::class)->validate();
         });
-
     }
 }
