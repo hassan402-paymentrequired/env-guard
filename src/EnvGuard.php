@@ -110,7 +110,7 @@ class EnvGuard
 
             case 'boolean':
                 if ($value !== null && ! is_bool($value)) {
-                    return 'must be a boolean ' . $param;
+                    return 'must be a boolean '.$param;
                 }
                 break;
             case 'nullable':
